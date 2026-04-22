@@ -21,7 +21,7 @@ In addition to every files needed for the project to work, we must also produce 
   - A DOCKER IS NOT A VIRTUAL MACHINE. We're using multiple Docker images on one virtual machine.
   - The project will contain some information that must stay private (credentials, API keys, passwords,...), meaning strictly stored in local files and NEVER pushed on git.
   - Are prohibited: tail -f, bash, sleep infinity, while true. WE CAN'T USE AN INFINITE LOOP.
-  - The volumes must stored their data localy, IN THE HOST MACHINE, at /home/cyglardo/data.
+  - The volumes must store their data localy, IN THE HOST MACHINE, at /home/cyglardo/data.
   - If any container crashes, it must restart.
 
 
