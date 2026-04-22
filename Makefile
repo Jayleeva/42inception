@@ -34,6 +34,7 @@ clean:
 	- docker image rm -f $$(docker image ls -aq)
 	- docker volume rm $$(docker volume ls -q)
 	- docker network rm $(shell docker network ls --filter type=custom -q)
+	rm -rf secrets/
 
 fclean: clean volume
 
