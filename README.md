@@ -30,11 +30,11 @@ In addition to every files needed for the project to work, we must also produce 
 # Ressources
 
 ## Docker
-  https://www.youtube.com/watch?v=GVogBCqrXck&list=PLn6POgpklwWq0iz59-px2z-qjDdZKEvWd
+- https://www.youtube.com/watch?v=GVogBCqrXck&list=PLn6POgpklwWq0iz59-px2z-qjDdZKEvWd
 
 ## Docker compose
-  https://www.appsdeveloperblog.com/docker-compose-tutorial-for-beginners/
-  https://maximorlov.com/docker-compose-syntax-volume-or-bind-mount/
+- https://www.appsdeveloperblog.com/docker-compose-tutorial-for-beginners/
+- https://maximorlov.com/docker-compose-syntax-volume-or-bind-mount/
 
 
 
