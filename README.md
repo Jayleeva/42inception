@@ -7,10 +7,10 @@ Each image does its own thing and can communicate with its neighbour, in a "casc
 
 - First image is a NGINX container.
 - Second is a WordPress + PHP container.
-- Last is a DATABASE container.
+- Last is a MariaDB (database) container.
 
 We must have 2 volumes :
-- storage of the DATABASE
+- storage of the database
 - storage of the website files
 
 The project asks that we build our own Docker images. We must then write our own dockerfiles, which will be called in the docker-compose.yml of our Makefile.
@@ -36,7 +36,8 @@ In addition to every files needed for the project to work, we must also produce 
 - https://www.appsdeveloperblog.com/docker-compose-tutorial-for-beginners/
 - https://maximorlov.com/docker-compose-syntax-volume-or-bind-mount/
 
-
+## Daemon
+- https://www.geeksforgeeks.org/devops/what-is-docker-daemon/
 
 # Project description
 use of Docker and the sources included in the project.
