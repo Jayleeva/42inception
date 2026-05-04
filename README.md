@@ -28,7 +28,8 @@ Pour répondre à tous les critères: utiliser un daemon, et configurer le data 
 
 # Instructions
 - docker ps -a
-- docker run -d --name nginx nginx:latest
+- docker run -d --name c1 nginx:latest
+- docker exec -ti c1 bash
 - docker volume ls
 
 # Ressources
@@ -43,6 +44,7 @@ Pour répondre à tous les critères: utiliser un daemon, et configurer le data 
 
 ## Daemon
 - https://www.geeksforgeeks.org/devops/what-is-docker-daemon/
+- https://docs.docker.com/engine/daemon/
 
 # Project description
 use of Docker and the sources included in the project.
