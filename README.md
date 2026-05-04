@@ -24,13 +24,18 @@ In addition to every files needed for the project to work, we must also produce 
   - The volumes must store their data localy, IN THE HOST MACHINE, at /home/cyglardo/data.
   - If any container crashes, it must restart.
 
+Pour répondre à tous les critères: utiliser un daemon, et configurer le data root du Docker daemon dans la VM pour qu'elle pointe vers /home/login/data. Comme ça, pas besoin de bind mount ou de bricolage avec driver_opts, et les volumes sont nommés quelque part (named) et pas juste désignés par un chemin.
 
 # Instructions
+- docker ps -a
+- docker run -d --name nginx nginx:latest
+- docker volume ls
 
 # Ressources
 
 ## Docker
 - https://www.youtube.com/watch?v=GVogBCqrXck&list=PLn6POgpklwWq0iz59-px2z-qjDdZKEvWd
+- https://gitlab.com/xavki/docker-v2/-/blob/main/02-premier-pas/premier-pas.sh?ref_type=heads
 
 ## Docker compose
 - https://www.appsdeveloperblog.com/docker-compose-tutorial-for-beginners/
