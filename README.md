@@ -37,6 +37,7 @@ Pour répondre à tous les critères: utiliser un daemon, et configurer le data 
 ## Docker
 - https://www.youtube.com/watch?v=GVogBCqrXck&list=PLn6POgpklwWq0iz59-px2z-qjDdZKEvWd
 - https://gitlab.com/xavki/docker-v2/-/blob/main/02-premier-pas/premier-pas.sh?ref_type=heads
+- file:///D:/Rapport-M437_ServiceConteneurs_GFischer.pdf
 
 ## Docker compose
 - https://www.appsdeveloperblog.com/docker-compose-tutorial-for-beginners/
