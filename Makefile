@@ -15,8 +15,8 @@ up:
 down:
 	$(CMP) down
 
-prune:
-	docker system prune --all --volumes
+#prune:
+#	docker system prune --all --volumes
 	
 domain:	
 	echo "127.0.0.1 cyglardo.42.fr" >> /etc/hosts
