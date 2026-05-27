@@ -50,6 +50,7 @@ Pour répondre à tous les critères: utiliser un daemon (automatique avec Docke
 
 ## Nginx
 - https://www.f5.com/glossary/nginx
+- https://medium.com/@vosarat1995/nginx-and-docker-getting-started-d32d9d6cbb95
 
 # Project description
 use of Docker and the sources included in the project.
