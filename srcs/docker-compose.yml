@@ -1,0 +1,49 @@
+name: inception
+
+version: '1'
+
+services:
+  nginx:
+    container_name: nginx
+    build: 
+      context: ./requirements/NGINX
+      dockerfile: ./requirements/NGINX/Dockerfile
+    depends_on:
+      - ?
+    networks:
+      - network
+    ports:
+      - 443:443
+    restart: always
+
+  mariadb:
+    container_name: mariadb
+    build:
+      context: ./requirements/MariaDB
+      dockerfile: ./requirements/MariaDB/Dockerfile
+    networks:
+      - network
+    env_file:
+      - .env
+    restart: always
+
+  wordpress:
+    container_name: wordpress
+    build: 
+      context: ./requirements/WordPress
+      dockerfile: ./requirements/WordPress/Dockerfile
+    depends_on:
+      - mariadb
+    networks:
+      - network
+    env_file:
+      - .env
+    restart: always
+
+# We need to name each container.
+# The builds are specified in the local files. We separate them into "contexts" and "dockerfile" to visibly call the dockerfiles as is demanded in the subject ?
+# Just like with a Makefile, we can make some targets dependant on others. By making WordPress dependant on MariaDB, we make sure the data base is launched before the website.
+# We need to specify the networks (?)
+# For NGINX, we need to specfiy a port (443 is the one demanded in the subject).
+# For MariaDB and WordPress, we need to specify the env (local).
+# By using restart: always, we make sure that any container shutting down restarts itself, as is demanded in the subject.
