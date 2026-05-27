@@ -47,6 +47,9 @@ None.
 - https://www.appsdeveloperblog.com/docker-compose-tutorial-for-beginners/
 - https://maximorlov.com/docker-compose-syntax-volume-or-bind-mount/
 
+## Dockerfile
+- https://github.com/vbachele/Inception/blob/main/scrs/requirements/wordpress/Dockerfile
+
 ## Daemon
 - https://www.geeksforgeeks.org/devops/what-is-docker-daemon/
 - https://docs.docker.com/engine/daemon/
