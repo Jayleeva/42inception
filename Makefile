@@ -12,7 +12,7 @@ up:
 	$(CMP) up -d --build
 
 down:
-	$(CMP) down  -v --remove-orphans
+	$(CMP) down -v --remove-orphans
 	
 #domain:	
 #	echo "127.0.0.1 cyglardo.42.fr" >> /etc/hosts
@@ -26,11 +26,11 @@ clean:
 	- docker image rmi -f $$(docker image ls -aq)
 	- docker volume rm $$(docker volume ls -q)
 	- docker network rm $(docker network ls -q)
-	#rm -rf secrets/
 
 fclean: clean
 	#rm -rf ~/data/wordpress
 	#rm -rf ~/data/mariadb
+	#rm -rf secrets/
 	rm -f $(NAME)
 
 re:	fclean all
