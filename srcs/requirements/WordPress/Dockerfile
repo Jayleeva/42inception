@@ -22,11 +22,16 @@ RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli
   && chmod +x wp-cli.phar \
   && mv wp-cli.phar /usr/local/bin/wp
 
-# Copying the script, then giving the right to launch it localy, definying it as entrypoint
-COPY ./tools/create_wordpress.sh /usr/local/bin/
-RUN chmod +x /usr/local/bin/create_wordpress.sh
-ENTRYPOINT ["/usr/local/bin/create_wordpress.sh"]
+# Copying the .conf in the html directory ?
+COPY ./conf/www.conf /etc/php/7.3/fpm/pool.d/www.conf
 
+# Copying the .sh, then giving the right to launch it localy, definying it as entrypoint
+COPY ./tools/wordpress_entrypoint.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/wordpress_entrypoint.sh
+ENTRYPOINT ["/usr/local/bin/wordpress_entrypoint.sh"]
+
+#Create the folder to enable php start
+RUN mkdir /run/php
 
 # Going to the html directory
 WORKDIR /var/www/html/
