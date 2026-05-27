@@ -4,25 +4,21 @@ CMP = docker compose -f $(YML)
 
 all: $(NAME)
 
-$(NAME):
+$(NAME): up
+
+up:
 	mkdir -p ~/data/wordpress
 	mkdir -p ~/data/mariadb
 	$(CMP) up -d --build
 
-up:
-	$(CMP) up -d
-
 down:
-	$(CMP) down
-
-#prune:
-#	docker system prune --all --volumes
+	$(CMP) down  -v --remove-orphans
 	
-domain:	
-	echo "127.0.0.1 cyglardo.42.fr" >> /etc/hosts
+#domain:	
+#	echo "127.0.0.1 cyglardo.42.fr" >> /etc/hosts
 
-logs: 
-	$(CMP) logs
+#logs: 
+#	$(CMP) logs
 
 clean:
 	- docker container stop $$(docker container ps -aq)
