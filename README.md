@@ -35,6 +35,9 @@ Pour répondre à tous les critères: utiliser un daemon (automatique avec Docke
 
 # Ressources
 
+## AI use
+None.
+
 ## Docker
 - https://www.youtube.com/watch?v=GVogBCqrXck&list=PLn6POgpklwWq0iz59-px2z-qjDdZKEvWd
 - https://gitlab.com/xavki/docker-v2/-/blob/main/02-premier-pas/premier-pas.sh?ref_type=heads
