@@ -48,6 +48,9 @@ Pour répondre à tous les critères: utiliser un daemon (automatique avec Docke
 - https://www.geeksforgeeks.org/devops/what-is-docker-daemon/
 - https://docs.docker.com/engine/daemon/
 
+## Nginx
+- https://www.f5.com/glossary/nginx
+
 # Project description
 use of Docker and the sources included in the project.
 
