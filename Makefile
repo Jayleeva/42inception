@@ -1,42 +1,43 @@
 NAME = inception
-YML	= srcs/docker-compose.yml
+YML	= ./srcs/docker-compose.yml
+CMP = docker compose -f $(YML)
 
 all: $(NAME)
 
 $(NAME):
 	mkdir -p ~/data/wordpress
 	mkdir -p ~/data/mariadb
-	docker compose -f $(YML) up --build -d
+	$(CMP) up -d --build
 
 up:
-	docker compose -f $(YML) up -d
+	$(CMP) up -d
 
 down:
-	docker compose -f $(YML) down
+	$(CMP) down
 
 prune:
 	docker system prune --all --volumes
-
-volume:
-	sudo rm -rf ~/data/wordpress
-	sudo rm -rf ~/data/mariadb
-	sudo rm -rf ~/data/
 	
 domain:	
 	echo "127.0.0.1 cyglardo.42.fr" >> /etc/hosts
 
 logs: 
-	docker compose -f $(YML) logs
+	$(CMP) logs
 
 clean:
 	- docker container stop $$(docker container ps -aq)
 	- docker container rm $$(docker container ps -aq)
-	- docker image rm -f $$(docker image ls -aq)
+	- docker image rmi -f $$(docker image ls -aq)
 	- docker volume rm $$(docker volume ls -q)
 	- docker network rm $(shell docker network ls --filter type=custom -q)
 	rm -rf secrets/
 
-fclean: clean volume
+fclean: clean
+	sudo rm -rf ~/data/wordpress
+	sudo rm -rf ~/data/mariadb
+	sudo rm -rf ~/data/
+	rm -f $(NAME)
 
 re:	fclean all
 
+.PHONY: all clean fclean re up down 
