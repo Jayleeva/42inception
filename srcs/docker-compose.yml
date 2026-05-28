@@ -1,6 +1,4 @@
-name: inception
-
-version: '1'
+version: '3.8'
 
 services:
 # web server
@@ -8,48 +6,50 @@ services:
     container_name: nginx
     build: 
       context: ./requirements/NGINX
-      dockerfile: ./requirements/NGINX/Dockerfile
+      dockerfile: Dockerfile
     depends_on:
       - wordpress
     networks:
-      - network
+      - inception
     ports:
       - 443:443
+    env_file:
+      - .env
     volumes:
-      - wordpress_data:/var/www/html
+      - wordpress_data:/var/www/wordpress
     restart: on-failure
 # website
   wordpress:
     container_name: wordpress
     build: 
       context: ./requirements/WordPress
-      dockerfile: ./requirements/WordPress/Dockerfile
+      dockerfile: Dockerfile
     depends_on:
       - mariadb
     networks:
-      - network
-    #expose:
-    #  - "9000"
+      - inception
+    expose:
+      - "9000"
     env_file:
       - .env
     volumes:
-      - wordpress_data:/var/www/html
+      - wordpress_data:/var/www/wordpress
     restart: on-failure
 # database
   mariadb:
     container_name: mariadb
     build:
       context: ./requirements/MariaDB
-      dockerfile: ./requirements/MariaDB/Dockerfile
+      dockerfile: Dockerfile
     networks:
-      - network
-    #expose:
-    #    - "3306"
+      - inception
+    expose:
+        - "3306"
     env_file:
       - .env
     volumes:
       - mariadb_data:/var/lib/mysql
-    restart: on-failure
+    restart: unless-stopped
 
 # We need to name each container.
 # The builds are specified in the local files. We separate them into "contexts" and "dockerfile" to visibly call the dockerfiles as is demanded in the subject ?

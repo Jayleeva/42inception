@@ -2,41 +2,35 @@ FROM debian:trixie
 
 # Getting updates or installing all dependencies
 RUN apt-get update && apt-get -y install \
-	bash \
-	curl \
-	php \
+	wget \
+	php7.3 \
 	php-fpm \
 	php-mysql \
-	php-redis \
-	# php-zip \
-	# php-cgi \
-	# php-pdo \
-	# php-gd php-cli \
-	# php-mbstring \
-	redis \
 	mariadb-client
+	
+# Modifying lines about port and env in the php conf file
+RUN sed -i -e 's/listen =.*/listen = wordpress:9000/g' /etc/php/7.3/fpm/pool.d/www.conf
+	&& sed -i -e 's/;clear_env = no/clear_env = no/g' /etc/php/7.3/fpm/pool.d/www.conf
 
-#Create the folder to enable php start
-RUN mkdir /run/php
+# Getting wordpress CLI, which will allow autoconf, allowing execution and moving it to local binaries
+RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+	&& chmod +x wp-cli.phar
+	&& mv wp-cli.phar /usr/local/bin/wp
 
-# Installing wp_cli command and putting it in the right directory /usr/local/bin
-RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
-  && chmod +x wp-cli.phar \
-  && mv wp-cli.phar /usr/local/bin/wp
+# Getting wordpress with wget, decompressing it and deleting the tar; then giving root access
+RUN wget https://fr.wordpress.org/wordpress-6.0-fr_FR.tar.gz -P /var/www
+	&& cd /var/www
+	&& tar -xzf wordpress-6.0-fr_FR.tar.gz
+	&& rm wordpress-6.0-fr_FR.tar.gz
+	&& chown -R root:root /var/www/wordpress
 
-# Copying the .conf in the html directory /etc/php/7.3/fpm/pool.d/www.conf (?)
-COPY ./conf/www.conf /etc/php/7.3/fpm/pool.d/www.conf
+# Copying the .conf in the local directory /etc/php/7.3/fpm/pool.d/www.conf
+COPY /conf/www.conf /etc/php/7.3/fpm/pool.d/www.conf
 
 # Copying the .sh, then giving the right to launch it localy, definying it as entrypoint (?)
-COPY ./tools/wordpress_entrypoint.sh /usr/local/bin/
+COPY /tools/wordpress_entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/wordpress_entrypoint.sh
 ENTRYPOINT ["/usr/local/bin/wordpress_entrypoint.sh"]
 
-# Going to the html directory
-WORKDIR /var/www/html/
-
-# Exposing the 9000 port
-EXPOSE 9000
-
-# Launching PHP FPM in foreground and ignoring deamonize from conf file (-F) (?)
+# Launching PHP FPM while ignoring deamonize from conf file (?)
 CMD ["/usr/sbin/php-fpm7.3", "-F"]
