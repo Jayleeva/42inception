@@ -5,8 +5,8 @@ RUN apt-get update && apt-get -y install \
 	bash \
 	curl \
 	php \
-	php-mysql \
 	php-fpm \
+	php-mysql \
 	php-redis \
 	# php-zip \
 	# php-cgi \
