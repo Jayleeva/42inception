@@ -8,9 +8,9 @@ RUN apt-get update && apt-get -y install \
 	php-mysql \
 	mariadb-client
 	
-# Modifying lines about port and env in the php conf file
-RUN sed -i -e 's/listen =.*/listen = wordpress:9000/g' /etc/php/7.3/fpm/pool.d/www.conf
-	&& sed -i -e 's/;clear_env = no/clear_env = no/g' /etc/php/7.3/fpm/pool.d/www.conf
+# Modifying lines about port and env in the php conf file (utiliser le fichier www.conf du git a la place)
+#RUN sed -i -e 's/listen =.*/listen = wordpress:9000/g' /etc/php/7.3/fpm/pool.d/www.conf
+#	&& sed -i -e 's/;clear_env = no/clear_env = no/g' /etc/php/7.3/fpm/pool.d/www.conf
 
 # Getting wordpress CLI, which will allow autoconf, allowing execution and moving it to local binaries
 RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
