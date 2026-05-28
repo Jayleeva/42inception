@@ -51,6 +51,25 @@ services:
       - mariadb_data:/var/lib/mysql
     restart: unless-stopped
 
+volumes:
+  wordpress_data:
+    driver: local                             # ici nous stockons le volume en local
+    driver_opts:
+      type: 'none' 									          # aucun type spécifique
+      o: 'bind'
+      device: '/home/cyglardo/data/wordpress' 	# Ou stocker le dossier sur votre ordinateur en local
+  mariadb_data:
+    driver: local
+    driver_opts:
+      type: 'none' 
+      o: 'bind'										            # Les Bind Mounts sont des volumes qui se montent sur un chemin d'accès à l'hôte, et ils peuvent être modifiés par d'autres processus en dehors de docker.
+      device: '/home/cyglardo/data/mariadb'
+
+networks:
+  inception:
+    driver: bridge
+
+
 # We need to name each container.
 # The builds are specified in the local files. We separate them into "contexts" and "dockerfile" to visibly call the dockerfiles as is demanded in the subject ?
 # Just like with a Makefile, we can make some targets dependant on others. By making WordPress dependant on MariaDB, we make sure the data base is launched before the website. By making NGINX dependant on WordPress, we make sure the website is launched before the server ?

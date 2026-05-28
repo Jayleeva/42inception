@@ -54,6 +54,9 @@ None.
 - https://github.com/vbachele/Inception/blob/main/scrs/requirements/wordpress/Dockerfile
 - https://docs.docker.com/get-started/docker-concepts/building-images/
 
+## Bind mount
+- https://docs.docker.com/engine/storage/bind-mounts/
+
 ## Daemon
 - https://www.geeksforgeeks.org/devops/what-is-docker-daemon/
 - https://docs.docker.com/engine/daemon/
