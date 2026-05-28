@@ -49,6 +49,7 @@ None.
 
 ## Dockerfile
 - https://github.com/vbachele/Inception/blob/main/scrs/requirements/wordpress/Dockerfile
+- https://docs.docker.com/get-started/docker-concepts/building-images/
 
 ## Daemon
 - https://www.geeksforgeeks.org/devops/what-is-docker-daemon/
