@@ -14,7 +14,8 @@ up:
 	echo "127.0.0.1 $(HOST_URL)" >> /etc/hosts
 
 down:
-	$(CMP) down -v --remove-orphans
+	$(CMP) down -v --remove-orphans 
+# --volumes to remove volumes.
 
 #logs: 
 #	$(CMP) logs
