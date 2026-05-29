@@ -55,17 +55,18 @@ volumes:
   wordpress_data:
     driver: local
     driver_opts:
-      type: volume
-      name: wordpress_data
-      source: /var/www/wordpress
-      dest: /home/cyglardo/data/wordpress
+    type: none
+    o: bind
+    device: /home/cyglardo/data/wordpress
   mariadb_data:
     driver: local
     driver_opts:
-      type: volume 
-      name: mariadb_data
-      source: /var/lib/mysql/data
-      dest: /home/cyglardo/data/mariadb
+    type: none
+    o: bind
+    device: /home/cyglardo/data/mariadb
+
+# The best of both worlds: a named volume (showing with docker volume ls + referenced by name), but specific host directory.
+# The directory MUST exit before creation of the volume.
 
 networks:
   inception:
