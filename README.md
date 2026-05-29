@@ -63,7 +63,7 @@ None.
 - https://www.geeksforgeeks.org/devops/what-is-docker-daemon/
 - https://docs.docker.com/engine/daemon/
 
-## PID 1: RUN, ENTRYPOINT OR CMD ?
+## PID 1: RUN, ENTRYPOINT or CMD ?
 - https://www.docker.com/blog/docker-best-practices-choosing-between-run-cmd-and-entrypoint/
 
 ## Nginx
