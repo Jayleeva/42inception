@@ -25,23 +25,35 @@ In addition to every files needed for the project to work, we must also produce 
   - If any container crashes, it must restart.
 
 # Instructions
-Create a "data" directory in home/login, then a "wordpress" and a "mariadb" directories in the "data" one.
+Clone the git repository locally, in home/login.
+````
+cd home/${USER}
+git clone 42inception
+````
+
+Create a "data" directory in home/login, then a "wordpress" and a "mariadb" directories inside the "data" one.
 ```
-cd home/login
 mkdir data
 cd data
 mkdir wordpress
 mkdir mariadb
 ```
 
-Create a .env locally.
+Move the "secrets" directory from /home/login/premade to the project's root.
 ````
-cd home/login
-touch .env
+mv home/${USER}/premade/secrets home/${USER}/42inception/secrets
+````
+Enter credentials, a password and a root password in the corresponding secret files.
+
+
+Move the premade .env file from /home/login/premade to the project's tree, specifically in the sources.
+````
+mv home/${USER}/premade/.env home/${USER}/42inception/srcs/.env
 ````
 
 Use the makefile.
 `````
+cd home/${USER}/42inception
 make
 ````
 
