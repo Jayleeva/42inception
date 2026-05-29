@@ -120,4 +120,4 @@ Environment variables are accessible and written in clear. Secrets allow, well, 
 Guessing that docker network is safer than a host network, idk.
 
 ### Docker Volumes vs Bind Mounts
-Volumes (named or anonymous) store their data localy. Bind mounts allow to take data from the host. Something like that. 
+Volumes (named or anonymous) store their data inside the container. Bind mounts allow to access directories from the host. 
