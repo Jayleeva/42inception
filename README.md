@@ -24,13 +24,9 @@ In addition to every files needed for the project to work, we must also produce 
   - The volumes must store their data localy, ON THE HOST MACHINE, at /home/cyglardo/data, despite being NAMED VOLUMES and NOT bind mounts.
   - If any container crashes, it must restart.
 
-Pour répondre à tous les critères: utiliser un daemon (automatique avec Docker), et configurer le data root du Docker daemon dans la VM pour qu'elle pointe vers /home/login/data. Comme ça, pas besoin de bind mount ou de bricolage avec driver_opts, et les volumes sont nommés quelque part (named) et pas juste désignés par un chemin.
-- docker run -v /home/cyglardo/data
 
 # Instructions
 - docker ps -a
-- docker run -d --name c1 nginx:latest (!!latest PROHIBITED!!)
-- docker exec -ti c1 bash (!!bash PROHIBITED!!)
 - docker volume ls
 
 # Ressources
@@ -83,8 +79,8 @@ None.
 - https://mariadb.com/docs/server/server-management/install-and-upgrade-mariadb/configuring-mariadb/configuring-mariadb-with-option-files
 
 # Project description
-## Uses of Docker and sources included
-Docker is used in order to facilitate the passage from developpement to deployement, by making sure that what works in your IDE will also work in prod, since the environment is guaranted to be the same. It also insures that every dev works with the same environment all along.
+## Uses of Docker and sources
+Docker is a technology allowing to contain a program with all its dependencies, libraries, tools, configuration files, system components... in a manner that is isolated and so, independant from the host. In addition to each docker working in its own little world with its own access to its own ressources, its encapsulation facilitates portability, by making sure that what works on your machine will also work on another, as long as both use the same curated environment, either by being the end device, or by using the same container. What you see in developpment, is what your clients will see in deployment.
 
 NGINX is a web server that can also work as reverse proxy, load balancing, API gateway, and more. It's used to host websites.
 
@@ -111,7 +107,7 @@ I chose to use "on-failure" instead of "always" for the restart option of each c
 ## Comparisons
 
 ### Virtual Machines vs Docker
-Docker is smaller, so it uses less ressources. You build it with strictly what you need instead of an entire machine.
+Docker is smaller, so it uses less ressources and goes faster. You build it with strictly what you need instead of an entire machine.
 
 ### Secrets vs Environment Variables
 Environment variables are accessible and written in clear. Secrets allow, well, secrecy.
