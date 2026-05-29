@@ -68,6 +68,7 @@ None.
 
 ## PID 1
 - https://dev.to/alejiri/docker-nginx-wordpress-mariadb-tutorial-inception42-1eok
+- https://www.docker.com/blog/docker-best-practices-choosing-between-run-cmd-and-entrypoint/
 
 ## Nginx
 - https://www.f5.com/glossary/nginx
