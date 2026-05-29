@@ -75,12 +75,32 @@ None.
 - https://medium.com/@vosarat1995/nginx-and-docker-getting-started-d32d9d6cbb95
 
 # Project description
-use of Docker and the sources included in the project.
+## Uses of Docker and sources included
+Docker is used in order to facilitate the passage from developpement to deployement, by making sure that what works in your IDE will also work in prod, since the environment is guaranted to be the same. It also insures that every dev works with the same environment all along.
 
-Main design choices
+NGINX is a web server that also works as proxy and API(). It's used to power websites.
 
-Comparisons between:
-  - Virtual Machines vs Docker
-  - Secrets vs Environment Variables
-  - Docker Network vs Host Network
-  - Docker Volumes vs Bind Mounts
+WordPress is a () that facilitates the making and maintaining of websites. It's used to make and maintain websites.
+
+MariaDB is a opensource database that came when MYSQL decided to fuck up. It's used to store and access data.
+
+## Main design choices
+I chose Debian instead of Alpine because I'm more familiar with the first + I heard on this project it's a nightmare to deal with the dependancies of Alpine.
+
+To answer the riddle of "no bind mounts, but your data must be stored in the host machine", I decided to ().
+
+To respect the instruction "if an entrypoint launches a .sh, the script must NOT launch nginx", and still have a script for nginx since the tree model had a "nginx/tools" directory, I followed the nginx ENTRYPOINT ["nginx.sh"] with a CMD ["nginx"].
+
+## Comparisons
+
+### Virtual Machines vs Docker
+Docker is smaller, so it uses less ressources. You build it with strictly what you need instead of an entire machine.
+
+### Secrets vs Environment Variables
+Environment variables are accessible and written in clear. Secrets allow, well, secrecy.
+
+### Docker Network vs Host Network
+Guessing that docker network is safer than a host network, idk.
+
+### Docker Volumes vs Bind Mounts
+Volumes (named or anonymous) store their data localy. Bind mounts allow to take data from the host. Something like that. 
