@@ -55,18 +55,16 @@ volumes:
   wordpress_data:
     driver: local
     driver_opts:
-      type: 'volume'
+      type: volume
       name: wordpress_data
-      source: wordpress_data
-      target: /var/lib/mysql/data
+      source: /var/www/wordpress
       dest: /home/cyglardo/data/wordpress
   mariadb_data:
     driver: local
     driver_opts:
-      type: 'volume' 
+      type: volume 
       name: mariadb_data
-      source: mariadb_data
-      target: /var/lib/mysql/data
+      source: /var/lib/mysql/data
       dest: /home/cyglardo/data/mariadb
 
 networks:

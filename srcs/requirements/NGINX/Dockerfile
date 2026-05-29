@@ -14,11 +14,11 @@ COPY /conf/nginx.conf /etc/nginx/nginx.conf
 RUN chmod 755 /var/www/html
 RUN chown -R www-data:www-data /var/www/html
 
-# Copying the .sh, then giving the right to launch it localy
-COPY /tools/nginx_entrypoint.sh /tmp/certs.sh
+# Copying the .sh, then giving the right to launch it localy, defining it as entrypoint
+COPY /tools/nginx.sh /tmp/certs.sh
 RUN chmod +x /tmp/certs.sh
-RUN ./tmp/certs.sh
-# bash interdit, donc utiliser ENTRYPOINT pour lancer ngninx_entrypoint.sh? 
+ENTRYPOINT [ "./tmp/certs.sh" ]
+# utiliser ENTRYPOINT pour lancer ngninx.sh, puis lancer nginx avec CMD
 # if the entrypoint is a script, ensure it runs no program in background (e.g, 'nginx & bash').
 
 CMD ["nginx", "-g", "daemon off;"]

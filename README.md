@@ -10,8 +10,8 @@ Each image does its own thing and can communicate with its neighbour, in a "casc
 - Last is a MariaDB (database) container.
 
 We must have 2 volumes :
-- storage of the database
-- storage of the website files
+- storage of the database, accessible to MariaDB
+- storage of the website files, accessible to both NGINX and WordPress
 
 The project asks that we build our own Docker images. We must then write our own dockerfiles, which will be called in the docker-compose.yml of our Makefile.
 
@@ -21,7 +21,7 @@ In addition to every files needed for the project to work, we must also produce 
   - A DOCKER IS NOT A VIRTUAL MACHINE. We're using multiple Docker images on one virtual machine.
   - The project will contain some information that must stay private (credentials, API keys, passwords,...), meaning strictly stored in local files and NEVER pushed on git.
   - Are prohibited: tail -f, bash, sleep infinity, while true. WE CAN'T USE AN INFINITE LOOP.
-  - The volumes must store their data localy, IN THE HOST MACHINE, at /home/cyglardo/data.
+  - The volumes must store their data localy, IN THE HOST MACHINE, at /home/cyglardo/data, despite being NAMED VOLUMES and NOT bind mounts.
   - If any container crashes, it must restart.
 
 Pour répondre à tous les critères: utiliser un daemon (automatique avec Docker), et configurer le data root du Docker daemon dans la VM pour qu'elle pointe vers /home/login/data. Comme ça, pas besoin de bind mount ou de bricolage avec driver_opts, et les volumes sont nommés quelque part (named) et pas juste désignés par un chemin.
