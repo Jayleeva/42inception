@@ -24,8 +24,28 @@ In addition to every files needed for the project to work, we must also produce 
   - The volumes must store their data localy, ON THE HOST MACHINE, at /home/cyglardo/data, despite being NAMED VOLUMES and NOT bind mounts.
   - If any container crashes, it must restart.
 
-
 # Instructions
+Create a "data" directory in home/login, then a "wordpress" and a "mariadb" directories in the "data" one.
+```
+cd home/login
+mkdir data
+cd data
+mkdir wordpress
+mkdir mariadb
+```
+
+Create a .env locally.
+````
+cd home/login
+touch .env
+````
+
+Use the makefile.
+`````
+make
+````
+
+Try commands:
 - docker ps -a
 - docker volume ls
 
