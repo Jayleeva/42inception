@@ -9,6 +9,6 @@ openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
 # Replacing the data-root in the daemon.json so that the named volumes are stored in home/login/data
 # sed -i -e 's/"data-root": "/var/lib/docker"/"data-root": "/home/'${MYSQL_USER}'/data"/g' /etc/docker/daemon.json
 
-# Creating the directories where the volumes will be stored
-mkdir /home/${MYSQL_USER}/data/mariadb
-mkdir /home/${MYSQL_USER}/data/wordpress
+# Creating the directories where the volumes will be stored (MAYBE NOT HERE, risks of overwrite)
+#mkdir /home/${MYSQL_USER}/data/mariadb
+#mkdir /home/${MYSQL_USER}/data/wordpress
