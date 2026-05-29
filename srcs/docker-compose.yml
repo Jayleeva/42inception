@@ -74,10 +74,10 @@ networks:
 
 
 # We need to name each container.
-# The builds are specified in the local files. We separate them into "contexts" and "dockerfile" to visibly call the dockerfiles as is demanded in the subject ?
+# The builds are specified in the local files. We give it the context and the Dockerfile name.
 # Just like with a Makefile, we can make some targets dependant on others. By making WordPress dependant on MariaDB, we make sure the data base is launched before the website. By making NGINX dependant on WordPress, we make sure the website is launched before the server ?
-# We need to specify the networks (?)
+# We need to specify the networks so that each container is understood as part of the same docker-network.
 # For NGINX, we need to specfiy a port (443 is the one demanded in the subject).
-# For MariaDB and WordPress, we need to specify the env (local).
+# For MariaDB and WordPress, we need to expose their respective ports and specify the env (local).
 # Both NGINX and WordPress must have access to the WordPress volume; ONLY MariaDB must have access to the MariaDB volume.
 # By using restart: on-failure, we make sure that any container shutting down restarts itself, as is demanded in the subject.
