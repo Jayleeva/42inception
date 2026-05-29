@@ -57,9 +57,17 @@ None.
 ## Bind mount
 - https://docs.docker.com/engine/storage/bind-mounts/
 
+## Named volumes
+- https://stackoverflow.com/questions/55366386/difference-between-docker-volume-type-bind-vs-volume
+- https://www.portainer.io/blog/persistent-storage-docker-bind-mounts-and-named-volumes
+- https://stackoverflow.com/questions/47150829/what-is-the-difference-between-binding-mounts-and-volumes-while-handling-persist
+
 ## Daemon
 - https://www.geeksforgeeks.org/devops/what-is-docker-daemon/
 - https://docs.docker.com/engine/daemon/
+
+## PID 1
+- https://dev.to/alejiri/docker-nginx-wordpress-mariadb-tutorial-inception42-1eok
 
 ## Nginx
 - https://www.f5.com/glossary/nginx
