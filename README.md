@@ -52,7 +52,7 @@ mv home/${USER}/premade/.env home/${USER}/42inception/srcs/.env
 ````
 
 Use the makefile.
-`````
+````
 cd home/${USER}/42inception
 make
 ````
