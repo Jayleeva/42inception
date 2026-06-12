@@ -1,4 +1,4 @@
-version: '3.8'
+#version: '3.8'
 
 services:
 # web server
@@ -55,15 +55,15 @@ volumes:
   wordpress_data:
     driver: local
     driver_opts:
-    type: none
-    o: bind
-    device: /home/cyglardo/data/wordpress
+      type: none
+      o: bind
+      device: /home/cyglardo/data/wordpress
   mariadb_data:
     driver: local
     driver_opts:
-    type: none
-    o: bind
-    device: /home/cyglardo/data/mariadb
+      type: none
+      o: bind
+      device: /home/cyglardo/data/mariadb
 
 # The best of both worlds: a named volume (showing with docker volume ls + referenced by name), but specific host directory.
 # The directory MUST exit before creation of the volume.

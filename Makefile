@@ -1,7 +1,7 @@
 NAME = inception
 HOST_URL = cyglardo.42.fr
 YML	= ./srcs/docker-compose.yml
-CMP = docker compose -f $(YML)
+CMP = docker-compose -f $(YML)
 
 all: $(NAME)
 
