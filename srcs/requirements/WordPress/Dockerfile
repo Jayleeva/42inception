@@ -1,4 +1,4 @@
-FROM debian:bullseye
+FROM debian:bullsey
 
 # Getting updates or installing all dependencies
 RUN apt-get update && apt-get -y install \

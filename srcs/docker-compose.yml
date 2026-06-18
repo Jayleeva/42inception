@@ -7,6 +7,9 @@ services:
     build: 
       context: ./requirements/NGINX
       dockerfile: Dockerfile
+      secrets:
+      - certificate
+      - key
     depends_on:
       - wordpress
     networks:
@@ -15,9 +18,6 @@ services:
       - 443:443
     env_file:
       - .env
-    secrets:
-      - certificate
-      - key
     volumes:
       - wordpress_data:/var/www/wordpress
     restart: on-failure
