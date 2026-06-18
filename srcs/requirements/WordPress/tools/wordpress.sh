@@ -23,4 +23,10 @@ if [ ! -f /var/www/html/wp-config.php ]; then
 		--admin_email=$WP_ADMIN_EMAIL
 
 	echo "==== [WORDPRESS] core installed. ===="
+
+    wp user create $WP_USER $WP_EMAIL \
+        --role=author \
+        --user_pass=$WP_PASSWORD --allow-root
+
+	echo "==== [WORDPRESS] user created. ===="s
 fi

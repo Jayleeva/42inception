@@ -25,7 +25,7 @@ RUN wget https://fr.wordpress.org/wordpress-6.0-fr_FR.tar.gz -P /var/www
 	&& chown -R root:root /var/www/wordpress
 
 # Copying the .conf in the local directory /etc/php/7.3/fpm/pool.d/www.conf
-COPY /conf/www.conf /etc/php/7.3/fpm/pool.d/www.conf
+COPY /conf/www.conf /etc/php/7.4/fpm/pool.d/www.conf
 
 # Copying the .sh, then giving the right to launch it localy, defining it as entrypoint (?)
 COPY /tools/wordpress.sh /usr/local/bin/
@@ -33,4 +33,4 @@ RUN chmod +x /usr/local/bin/wordpress.sh
 ENTRYPOINT ["/usr/local/bin/wordpress.sh"]
 
 # Launching PHP FPM while ignoring deamonize from conf file (?)
-CMD ["/usr/sbin/php-fpm7.3", "-F"]
+CMD ["/usr/sbin/php-fpm7.4", "-F"]

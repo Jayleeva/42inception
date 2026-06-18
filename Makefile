@@ -14,11 +14,7 @@ up:
 	echo "127.0.0.1 $(HOST_URL)" >> /etc/hosts
 
 down:
-	$(CMP) down -v --remove-orphans 
-# --volumes to remove volumes.
-
-#logs: 
-#	$(CMP) logs
+	$(CMP) down
 
 backup:
 	if [ -d ~/data ]; then sudo tar -czvf ~/data.tar.gz -C ~/data/ ; fi
@@ -31,6 +27,7 @@ clean:
 	docker network rm $(docker network ls -q)
 
 fclean: backup clean
+	docker system prune -af --volumes
 	rm -rf ~/data/wordpress
 	rm -rf ~/data/mariadb
 	#rm -rf secrets/
