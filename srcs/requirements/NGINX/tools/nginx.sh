@@ -1,6 +1,7 @@
 #!/bin/sh
 
 # Preparing certificate and key for TLS
+# save in secrets?
 openssl req -x509 -nodes -days 365 -newkey rsa:2048 \ 
 -keyout /etc/nginx/ssl/private/inception.key \
 -out /etc/nginx/ssl/certs/inception.crt \

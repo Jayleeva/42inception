@@ -15,6 +15,9 @@ services:
       - 443:443
     env_file:
       - .env
+    secrets:
+      - certificate
+      - key
     volumes:
       - wordpress_data:/var/www/wordpress
     restart: on-failure
@@ -83,3 +86,7 @@ networks:
 # By using restart: on-failure, we make sure that any container shutting down restarts itself, as is demanded in the subject.
 
 secrets:
+  certificate :
+    file: /run/secrets/inception.crt
+  key :
+    file: /run/secrets/inception.key

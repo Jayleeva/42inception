@@ -19,7 +19,7 @@ down:
 backup:
 	if [ -d ~/data ]; then sudo tar -czvf ~/data.tar.gz -C ~/data/ ; fi
 
-clean:
+clean: down
 	docker container stop $$(docker container ps -aq)
 	docker container rm $$(docker container ps -aq)
 	docker image rmi -f $$(docker image ls -aq)
@@ -30,7 +30,8 @@ fclean: backup clean
 	docker system prune -af --volumes
 	rm -rf ~/data/wordpress
 	rm -rf ~/data/mariadb
-	#rm -rf secrets/
+	rm -rf secrets/
+	#rm -rf .env
 	rm -f $(NAME)
 
 re:	fclean all
