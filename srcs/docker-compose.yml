@@ -8,8 +8,8 @@ services:
       context: ./requirements/NGINX
       dockerfile: Dockerfile
       secrets:
-      - certificate
-      - key
+        - certificate
+        - key
     depends_on:
       - wordpress
     networks:
