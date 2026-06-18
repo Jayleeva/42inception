@@ -1,0 +1,85 @@
+#version: '3.8'
+
+services:
+# web server
+  nginx:
+    container_name: nginx
+    build: 
+      context: ./requirements/NGINX
+      dockerfile: Dockerfile
+    depends_on:
+      - wordpress
+    networks:
+      - inception
+    ports:
+      - 443:443
+    env_file:
+      - .env
+    volumes:
+      - wordpress_data:/var/www/wordpress
+    restart: on-failure
+# website
+  wordpress:
+    container_name: wordpress
+    build: 
+      context: ./requirements/WordPress
+      dockerfile: Dockerfile
+    depends_on:
+      - mariadb
+    networks:
+      - inception
+    expose:
+      - "9000"
+    env_file:
+      - .env
+    volumes:
+      - wordpress_data:/var/www/wordpress
+    restart: on-failure
+# database
+  mariadb:
+    container_name: mariadb
+    build:
+      context: ./requirements/MariaDB
+      dockerfile: Dockerfile
+    networks:
+      - inception
+    expose:
+        - "3306"
+    env_file:
+      - .env
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    restart: unless-stopped
+
+volumes:
+  wordpress_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/cyglardo/data/wordpress
+  mariadb_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/cyglardo/data/mariadb
+
+# The best of both worlds: a named volume (showing with docker volume ls + referenced by name), but specific host directory.
+# The directory MUST exit before creation of the volume.
+
+networks:
+  inception:
+    driver: bridge
+
+
+# We need to name each container.
+# The builds are specified in the local files. We give it the context and the Dockerfile name.
+# Just like with a Makefile, we can make some targets dependant on others. By making WordPress dependant on MariaDB, we make sure the data base is launched before the website. By making NGINX dependant on WordPress, we make sure the website is launched before the server ?
+# We need to specify the networks so that each container is understood as part of the same docker-network.
+# For NGINX, we need to specfiy a port (443 is the one demanded in the subject).
+# For MariaDB and WordPress, we need to expose their respective ports and specify the env (local).
+# Both NGINX and WordPress must have access to the WordPress volume; ONLY MariaDB must have access to the MariaDB volume.
+# By using restart: on-failure, we make sure that any container shutting down restarts itself, as is demanded in the subject.
+
+secrets:
